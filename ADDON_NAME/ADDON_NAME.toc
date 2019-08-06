@@ -1,0 +1,12 @@
+## Interface: 80200
+## Title: ADDON_TITLE
+## Notes: ADDON_LONG_DESCRIPTION (|cFF99E5FF/ADDON_SLASH|r)
+## Author: MooreaTV moorea@ymail.com
+## Version: @project-version@
+## DefaultState: Enabled
+## LoadOnDemand: 0
+## SavedVariables: ADDON_NAMESaved
+## Globe: check-classic
+MoLib/MoLib.lua
+MoLib/MoLibUI.lua
+ADDON_NAME.lua

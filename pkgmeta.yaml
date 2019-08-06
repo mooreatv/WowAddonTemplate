@@ -1,0 +1,20 @@
+package-as: ADDON_NAME
+
+ignore:
+    - install.bat
+    - luaformat.cfg
+    - MoLib/installmolib.bat
+    - MoLib/MoLib.toc
+    - MoLib/luaformat.cfg
+    - MoLib/README.md
+    - MoLib/tests
+    - MoLib/Realms.lua
+
+externals:
+    MoLib:
+        url: https://github.com/mooreatv/MoLib
+
+move-folders:
+  ADDON_NAME/ADDON_NAME: ADDON_NAME
+
+enable-nolib-creation: no
