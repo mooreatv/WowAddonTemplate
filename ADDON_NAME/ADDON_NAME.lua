@@ -210,6 +210,7 @@ function ADDON_NS:CreateOptionsPanel()
   local p = ADDON_NS:Frame(L["ADDON_NAME"])
   ADDON_NS.optionsPanel = p
   p:addText(L["ADDON_NAME options"], "GameFontNormalLarge"):Place()
+  p:addText(L["ADDON_LONG_DESCRIPTION"]):Place()
   p:addText(L["These options let you control the behavior of ADDON_NAME"] .. " " .. ADDON_NS.manifestVersion ..
               " @project-abbreviated-hash@"):Place()
 
@@ -290,7 +291,7 @@ end
 -- bindings / localization
 _G.ADDON_UPPERCASE_NAME = "ADDON_NAME"
 _G.BINDING_HEADER_ADDON_NS = L["ADDON_TITLE addon key bindings"]
-_G.BINDING_NAME_ADDON_NS_SOMETHING = L["TODO: so something"] .. " |cFF99E5FF/ADDON_SLASH todo|r"
+_G.BINDING_NAME_ADDON_NS_SOMETHING = L["TODO something"] .. " |cFF99E5FF/ADDON_SLASH todo|r"
 
 -- ADDON_NS.debug = 2
 ADDON_NS:Debug("ADDON_SLASH main file loaded")
