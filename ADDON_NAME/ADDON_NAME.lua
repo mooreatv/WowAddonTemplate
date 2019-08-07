@@ -23,6 +23,9 @@ local L = ADDON_NS.L
 
 -- ADDON_NS.debug = 9 -- to debug before saved variables are loaded
 
+
+-- TODO: move most of this to MoLib
+
 function ADDON_NS:SetupMenu()
   ADDON_NS:WipeFrame(ADDON_NS.mmb)
   local b = ADDON_NS:minimapButton(ADDON_NS.buttonPos)
