@@ -46,7 +46,7 @@ function ADDON_NS:SetupMenu()
     if button == "RightButton" then
       ADDON_NS.Slash("config")
     else
-      ADDON_NS:PrinftDefault("ADDON_NAME TODO: do something when clicked...")
+      ADDON_NS:PrintDefault("ADDON_NAME TODO: do something when clicked...")
     end
   end)
   b.tooltipText = "|cFFF2D80CADDON_TITLE|r:\n" ..
