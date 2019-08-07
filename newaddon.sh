@@ -45,6 +45,7 @@ function doit() {
   rm ../$ADDON_NAME/newaddon.sh
   mv -f ../$ADDON_NAME/ADDON_NAME ../$ADDON_NAME/$ADDON_NAME
   pushd ../$ADDON_NAME
+  echo "$0 $CMD" >> ChangeLog.txt
   for fn in $(find . -type f); do
     echo "Working on $fn"
     newName=$(echo $fn | sed -e "s/ADDON_NAME/$ADDON_NAME/g")

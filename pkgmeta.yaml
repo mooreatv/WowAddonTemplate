@@ -14,6 +14,8 @@ externals:
     MoLib:
         url: https://github.com/mooreatv/MoLib
 
+manual-changelog: ChangeLog.txt
+
 move-folders:
   ADDON_NAME/ADDON_NAME: ADDON_NAME
 
