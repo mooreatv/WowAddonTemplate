@@ -163,7 +163,7 @@ function ADDON_NS.Slash(arg) -- can't be a : because used directly as slash comm
     ADDON_NS:BugReport(subText, "@project-abbreviated-hash@\n\n" .. L["Bug report from slash command"])
   elseif cmd == "v" then
     -- version
-    ADDON_NS:PrintDefault("PixelPerfectAlign " .. ADDON_NS.manifestVersion ..
+    ADDON_NS:PrintDefault("ADDON_NAME " .. ADDON_NS.manifestVersion ..
                             " (@project-abbreviated-hash@) by MooreaTv (moorea@ymail.com)")
   elseif cmd == "c" then
     -- Show config panel
@@ -179,7 +179,7 @@ function ADDON_NS.Slash(arg) -- can't be a : because used directly as slash comm
     else
       ADDON_NS:SetSaved("debug", tonumber(rest))
     end
-    ADDON_NS:PrintDefault("PixelPerfectAlign debug now %", ADDON_NS.debug)
+    ADDON_NS:PrintDefault("ADDON_NAME debug now %", ADDON_NS.debug)
   else
     ADDON_NS:Help('unknown command "' .. arg .. '", usage:')
   end
