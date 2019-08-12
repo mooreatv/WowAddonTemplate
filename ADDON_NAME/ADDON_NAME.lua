@@ -110,6 +110,7 @@ ADDON_NS.EventHdlrs = {
     ADDON_NAMESaved.addonHash = "@project-abbreviated-hash@"
     ADDON_NS:deepmerge(ADDON_NS, nil, ADDON_NAMESaved)
     ADDON_NS:Debug(3, "Merged in saved variables.")
+    ADDON_NS.savedVar = ADDON_NAMESaved -- reference not copy, changes to one change the other
   end
 }
 
