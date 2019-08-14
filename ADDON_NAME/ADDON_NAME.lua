@@ -23,7 +23,6 @@ local L = ADDON_NS.L
 
 -- ADDON_NS.debug = 9 -- to debug before saved variables are loaded
 
-
 -- TODO: move most of this to MoLib
 
 function ADDON_NS:SetupMenu()
@@ -114,35 +113,11 @@ ADDON_NS.EventHdlrs = {
   end
 }
 
-function ADDON_NS:OnEvent(event, first, ...)
-  ADDON_NS:Debug(8, "OnEvent called for % e=% %", self:GetName(), event, first)
-  local handler = ADDON_NS.EventHdlrs[event]
-  if handler then
-    return handler(self, event, first, ...)
-  end
-  ADDON_NS:Error("Unexpected event without handler %", event)
-end
-
 function ADDON_NS:Help(msg)
   ADDON_NS:PrintDefault("ADDON_NAME: " .. msg .. "\n" .. "/ADDON_SLASH config -- open addon config\n" ..
                           "/ADDON_SLASH bug -- report a bug\n" ..
                           "/ADDON_SLASH debug on/off/level -- for debugging on at level or off.\n" ..
                           "/ADDON_SLASH version -- shows addon version")
-end
-
--- returns 1 if changed, 0 if same as live value
--- number instead of boolean so we can add them in handleOk
--- (saved var isn't checked/always set)
-function ADDON_NS:SetSaved(name, value)
-  local changed = (value ~= self[name])
-  self[name] = value
-  ADDON_NAMESaved[name] = value
-  ADDON_NS:Debug(8, "(Saved) Setting % set to % - ADDON_NAMESaved=%", name, value, ADDON_NAMESaved)
-  if changed then
-    return 1
-  else
-    return 0
-  end
 end
 
 function ADDON_NS.Slash(arg) -- can't be a : because used directly as slash command
@@ -195,12 +170,7 @@ SlashCmdList["ADDON_NAME_Slash_Command"] = ADDON_NS.Slash
 SLASH_ADDON_NAME_Slash_Command1 = "/ADDON_SLASH"
 
 -- Events handling
-ADDON_NS.frame = CreateFrame("Frame")
-
-ADDON_NS.frame:SetScript("OnEvent", ADDON_NS.OnEvent)
-for k, _ in pairs(ADDON_NS.EventHdlrs) do
-  ADDON_NS.frame:RegisterEvent(k)
-end
+ADDON_NS:RegisterEventHandlers()
 
 -- Options panel
 
