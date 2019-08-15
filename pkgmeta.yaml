@@ -2,6 +2,7 @@ package-as: ADDON_NAME
 
 ignore:
     - install.bat
+    - classictag.sh
     - luaformat.cfg
     - MoLib/installmolib.bat
     - MoLib/MoLib.toc
