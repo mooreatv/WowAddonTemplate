@@ -23,6 +23,11 @@ local L = ADDON_NS.L
 
 -- ADDON_NS.debug = 9 -- to debug before saved variables are loaded
 
+ADDON_NS.slashCmdName = "ADDON_SLASH"
+ADDON_NS.addonHash = "@project-abbreviated-hash@"
+ADDON_NS.savedVarName = "ADDON_NAMESaved"
+-- ADDON_NS.author = "MooreaTv" -- override default author
+
 -- TODO: move most of this to MoLib
 
 function ADDON_NS:SetupMenu()
@@ -69,7 +74,11 @@ function ADDON_NS.SavePositionCB(_f, pos, _scale)
   ADDON_NS:SetSaved("buttonPos", pos)
 end
 
-ADDON_NS.EventHdlrs = {
+-- Events handling
+
+-- define ADDON_NS:AfterSavedVars() for post saved var loaded processing
+
+local additionalEventHandlers = {
 
   PLAYER_ENTERING_WORLD = function(_self, ...)
     ADDON_NS:Debug("OnPlayerEnteringWorld " .. ADDON_NS:Dump(...))
@@ -90,28 +99,11 @@ ADDON_NS.EventHdlrs = {
     end
   end,
 
-  ADDON_LOADED = function(_self, _event, name)
-    ADDON_NS:Debug(9, "Addon % loaded", name)
-    if name ~= addon then
-      return -- not us, return
-    end
-    -- check for dev version (need to split the tags or they get substituted)
-    if ADDON_NS.manifestVersion == "@" .. "project-version" .. "@" then
-      ADDON_NS.manifestVersion = "vX.YY.ZZ"
-    end
-    ADDON_NS:PrintDefault("ADDON_NAME " .. ADDON_NS.manifestVersion ..
-                            " by MooreaTv: type /ADDON_SLASH for command list/help.")
-    if ADDON_NAMESaved == nil then
-      ADDON_NS:Debug("Initialized empty saved vars")
-      ADDON_NAMESaved = {}
-    end
-    ADDON_NAMESaved.addonVersion = ADDON_NS.manifestVersion
-    ADDON_NAMESaved.addonHash = "@project-abbreviated-hash@"
-    ADDON_NS:deepmerge(ADDON_NS, nil, ADDON_NAMESaved)
-    ADDON_NS:Debug(3, "Merged in saved variables.")
-    ADDON_NS.savedVar = ADDON_NAMESaved -- reference not copy, changes to one change the other
-  end
 }
+
+ADDON_NS:RegisterEventHandlers(additionalEventHandlers)
+
+--
 
 function ADDON_NS:Help(msg)
   ADDON_NS:PrintDefault("ADDON_NAME: " .. msg .. "\n" .. "/ADDON_SLASH config -- open addon config\n" ..
@@ -168,9 +160,6 @@ end
 SlashCmdList["ADDON_NAME_Slash_Command"] = ADDON_NS.Slash
 
 SLASH_ADDON_NAME_Slash_Command1 = "/ADDON_SLASH"
-
--- Events handling
-ADDON_NS:RegisterEventHandlers()
 
 -- Options panel
 
@@ -232,18 +221,18 @@ function ADDON_NS:CreateOptionsPanel()
     if sliderVal == 0 then
       sliderVal = nil
       if ADDON_NS.debug then
-        ADDON_NS:PrintDefault("Options setting debug level changed from % to OFF.", ADDON_NS.debug)
+        ADDON_NS:PrintDefault("ADDON_NAME: options setting debug level changed from % to OFF.", ADDON_NS.debug)
       end
     else
       if ADDON_NS.debug ~= sliderVal then
-        ADDON_NS:PrintDefault("Options setting debug level changed from % to %.", ADDON_NS.debug, sliderVal)
+        ADDON_NS:PrintDefault("ADDON_NAME: options setting debug level changed from % to %.", ADDON_NS.debug, sliderVal)
       end
     end
     ADDON_NS:SetSaved("debug", sliderVal)
   end
 
   function p:cancel()
-    ADDON_NS:Warning("Options screen cancelled, not making any changes.")
+    ADDON_NS:Warning("ADDON_NAME: options screen cancelled, not making any changes.")
   end
 
   function p:okay()
