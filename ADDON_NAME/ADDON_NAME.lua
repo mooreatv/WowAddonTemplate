@@ -232,7 +232,7 @@ function ADDON_NS:CreateOptionsPanel()
   end
 
   function p:cancel()
-    ADDON_NS:Warning("ADDON_NAME: options screen cancelled, not making any changes.")
+    ADDON_NS:PrintDefault("ADDON_NAME: options screen cancelled, not making any changes.")
   end
 
   function p:okay()
