@@ -6,6 +6,7 @@ Things to do for new addon:
 - use newaddon.sh ADDON_NAME to copy initial files
 - Create curseforge addon and setup source link and webhook for build from github using project id
     - needs a sshot or logo https://spark.adobe.com/
+    - make an icon to put in ADDON_NAME/ADDON_NAME/ADDON_NAME.blp
 - Create wowinterface addon upload zip created by curseforge
 - update ~/installaddons.bat and ../MoLib/installmolib.bat
 

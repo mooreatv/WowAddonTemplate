@@ -32,20 +32,12 @@ ADDON_NS.savedVarName = "ADDON_NAMESaved"
 
 function ADDON_NS:SetupMenu()
   ADDON_NS:WipeFrame(ADDON_NS.mmb)
+  ADDON_NS.minimapButtonAngle = -20 -- change to not overlap with others
   local b = ADDON_NS:minimapButton(ADDON_NS.buttonPos)
-  local _nw, _nh, s, w, h = ADDON_NS:PixelPerfectSnap(b)
-  self:Debug("new w % h %", w, h)
-  local icon = CreateFrame("Frame", nil, b)
-  -- set scale to be pixels
-  icon:SetScale(s / icon:GetEffectiveScale())
-  ADDON_NS:Debug("Scale is now % es % ppf es %", icon:GetScale(), icon:GetEffectiveScale(), s)
-  local delta = math.floor((w - 32) / 2)
-  icon:SetPoint("BOTTOMLEFT", delta, delta)
-  icon:SetFlattensRenderLayers(true)
-  icon:SetSize(48, 48)
-  icon:SetIgnoreParentAlpha(true)
-  -- based on 32x32
-  -- TODO draw something or load texture
+  local t = b:CreateTexture(nil, "ARTWORK")
+  t:SetSize(19, 19)
+  t:SetTexture("Interface/Addons/ADDON_NAME/ADDON_NAME.blp") -- Make sure to create!
+  t:SetPoint("TOPLEFT", 7, -6)
   b:SetScript("OnClick", function(_w, button, _down)
     if button == "RightButton" then
       ADDON_NS.Slash("config")
@@ -67,7 +59,6 @@ function ADDON_NS:SetupMenu()
   end)
   ADDON_NS:MakeMoveable(b, ADDON_NS.SavePositionCB)
   ADDON_NS.mmb = b
-  ADDON_NS.mmb.icon = icon
 end
 
 function ADDON_NS.SavePositionCB(_f, pos, _scale)
