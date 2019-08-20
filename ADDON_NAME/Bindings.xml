@@ -7,14 +7,14 @@
 -->
 <Bindings>
     <Binding name="ADDON_NS_SOMETHING" header="ADDON_NS" category="ADDON_UPPERCASE_NAME">
-        PixelPerfectAlign.Slash("TODO")
+        ADDON_NAME.Slash("TODO")
     </Binding>
     <!--
     <Binding name="ADDON_NS_COORDS" category="ADDON_UPPERCASE_NAME">
-        PixelPerfectAlign.Slash("coords")
+        ADDON_NAME.Slash("coords")
     </Binding>
     <Binding name="ADDON_NS_INFO" category="ADDON_UPPERCASE_NAME">
-        PixelPerfectAlign.Slash("info")
+        ADDON_NAME.Slash("info")
     </Binding>
 -->
 </Bindings>
